@@ -1,0 +1,1 @@
+# VS_STM32_BASE
