@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LED", "LED\LED.vcxproj", "{6D20A2A4-3DD2-42CA-94DE-942B5F134E97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
+		Release|VisualGDB = Release|VisualGDB
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D20A2A4-3DD2-42CA-94DE-942B5F134E97}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{6D20A2A4-3DD2-42CA-94DE-942B5F134E97}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
+		{6D20A2A4-3DD2-42CA-94DE-942B5F134E97}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{6D20A2A4-3DD2-42CA-94DE-942B5F134E97}.Release|VisualGDB.Build.0 = Release|VisualGDB
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0671BF89-9D66-450E-A2AE-4AD839881C41}
+	EndGlobalSection
+EndGlobal
