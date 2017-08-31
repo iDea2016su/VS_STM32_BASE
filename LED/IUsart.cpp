@@ -108,3 +108,13 @@ IUsart::IUsart(USART_TypeDef* usartx,
 	USART_ITConfig(usartx, USART_IT_RXNE, ENABLE); 
 	USART_Cmd(usartx, ENABLE); 
 }
+
+void IUsart::sendStr(char *str)
+{
+	while((*str) != 0)
+	{
+		while ((USARTx->SR & 0X40) == 0); 
+		USARTx->DR = (*str);
+		str++;
+	}
+}

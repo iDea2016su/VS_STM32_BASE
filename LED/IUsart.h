@@ -8,8 +8,7 @@ public:
 	IUsart();
 	IUsart(USART_TypeDef* usartx, u32 bound, u8 pri, uint16_t stopbits, uint16_t party, uint16_t wordlen);
 	~IUsart();
-	void sendStr(u8 * str);
-	void sendStr(string str);
+	void sendStr(char * str);
 	void sendChar(u8 c);
 	void sendInt(int data);
 	u8 BUF[500];
