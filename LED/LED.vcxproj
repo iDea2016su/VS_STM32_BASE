@@ -73,6 +73,7 @@
     <ClCompile Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c" />
     <ClCompile Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c" />
     <ClCompile Include="delay.cpp" />
+    <ClCompile Include="IUsart.cpp" />
     <ClCompile Include="led.cpp" />
     <ClCompile Include="LEDBlink.cpp" />
     <ClCompile Include="nb.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h" />
     <ClInclude Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h" />
     <ClInclude Include="delay.h" />
+    <ClInclude Include="IUsart.h" />
     <ClInclude Include="led.h" />
     <ClInclude Include="nb.h" />
     <ClInclude Include="sys.h" />
