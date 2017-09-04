@@ -1,6 +1,6 @@
 #include "IUsart.h"
 #include "string.h"
-const uint8_t IPriority[12][2] = { 0, 0, 0, 1, 0, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2, 3, 0, 3, 1, 3, 2 };
+const uint8_t IPriority[12][2] = { 0, 1, 0, 2, 0, 3, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3 };
 
 IUsart::IUsart()
 {
@@ -62,7 +62,7 @@ IUsart::IUsart(USART_TypeDef* usartx,
 		GPIO_Init(GPIOB, &GPIO_InitStructure);
 		NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
 	}
-#ifdef HD
+#ifdef STM32F10X_HD
 	else if (usartx == UART4)
 	{
 		
@@ -96,7 +96,7 @@ IUsart::IUsart(USART_TypeDef* usartx,
 		GPIO_Init(GPIOD, &GPIO_InitStructure);
 		NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;
 	}			  
-#endif // HD
+#endif // STM32F10X_HD
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = IPriority[pri][0];
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = IPriority[pri][1];		
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			

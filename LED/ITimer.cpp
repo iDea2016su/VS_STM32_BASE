@@ -1,9 +1,11 @@
-﻿#include "ITimer.h"
+#include "ITimer.h"
+#include "delay.h"
+#include "led.h"
 
 extern const uint8_t IPriority[12][2];
 
 u8 ITimer::number = 0;
-ITimer* ITimer::itm = new ITimer[5];
+ITimer** ITimer::itm = new ITimer*[5];
 
 ITimer::ITimer()
 {
@@ -27,35 +29,49 @@ void ITimer::countSub()
 }
 
 ITimer::ITimer(u16 period, 
-	u8 pri) 
-	//void(*fun)(int))
+	u8 pri, 
+	void(*fun)())
 {	
+	//ITimer * iTimer = itm + number;
+	itm[number] = this;
+	countAdd();
+	Ifun = fun;
+
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
-
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-
-	TIM_TimeBaseStructure.TIM_Period = period * 2 - 1; //ÉèÖÃÔÚÏÂÒ»¸ö¸üÐÂÊÂ¼þ×°Èë»î¶¯µÄ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ	 ×î´óÊ±¼äÎª6s
-	TIM_TimeBaseStructure.TIM_Prescaler = (36000 - 1); //ÉèÖÃÓÃÀ´×÷ÎªTIMxÊ±ÖÓÆµÂÊ³ýÊýµÄÔ¤·ÖÆµÖµ  10KhzµÄ¼ÆÊýÆµÂÊ  
-	TIM_TimeBaseStructure.TIM_ClockDivision = 0; //ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tim
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIMÏòÉÏ¼ÆÊýÄ£Ê½
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure); //¸ù¾ÝTIM_TimeBaseInitStructÖÐÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊýµ¥Î»
- 
- 
-		/* Enable the TIM3 global Interrupt */
-	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;  //TIM3ÖÐ¶Ï
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;  //ÏÈÕ¼ÓÅÏÈ¼¶0¼¶
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;  //´ÓÓÅÏÈ¼¶3¼¶
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQÍ¨µÀ±»Ê¹ÄÜ
-	NVIC_Init(&NVIC_InitStructure);  //¸ù¾ÝNVIC_InitStructÖÐÖ¸¶¨µÄ²ÎÊý³õÊ¼»¯ÍâÉèNVIC¼Ä´æÆ÷
-
-	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);  //Çå³ýTIMxµÄÖÐ¶Ï´ý´¦ÀíÎ»:TIM ÖÐ¶ÏÔ´ 
-	TIM_ITConfig(  //Ê¹ÄÜ»òÕßÊ§ÄÜÖ¸¶¨µÄTIMÖÐ¶Ï
-    TIM3, //TIM2
-		TIM_IT_Update |  //TIM ÖÐ¶ÏÔ´
-		TIM_IT_Trigger,   //TIM ´¥·¢ÖÐ¶ÏÔ´ 
-		ENABLE );
-	//TIM_Cmd(TIM3, ENABLE);  //Ê¹ÄÜTIMxÍâÉè
+	switch (number)
+	{
+	case 1:
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+		break;
+	default:break;
+	}
+	TIM_TimeBaseStructure.TIM_Period = period;  
+	TIM_TimeBaseStructure.TIM_Prescaler = 7199;  
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;  
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  
+	switch (number)
+	{
+ 	case 1:
+		TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+		NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+		break;
+	default:break;
+	}
+	
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = IPriority[pri][0];
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = IPriority[pri][1]; 
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;  
+	NVIC_Init(&NVIC_InitStructure);   
+	switch (number)
+	{
+	case 1:
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);  
+		TIM_ITConfig(TIM3, TIM_IT_Update |  TIM_IT_Trigger, ENABLE);
+		TIM_Cmd(TIM3, ENABLE);  
+		break;
+	default:break;
+	}
 }
 
 u8 ITimer::getNumber()
@@ -63,4 +79,16 @@ u8 ITimer::getNumber()
 	return number;
 }
 
-//extern IUsart port;
+extern LED led;
+u8 n;
+extern "C" void TIM3_IRQHandler(void)    
+{
+	
+	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)  
+	{
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);  
+		
+		n = ITimer::getNumber();
+    	ITimer::itm[n - 1]->Ifun();
+	}
+}

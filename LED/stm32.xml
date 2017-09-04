@@ -3,8 +3,8 @@
   <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
   <BspID>com.sysprogs.arm.stm32</BspID>
   <BspVersion>4.3</BspVersion>
-  <McuID>STM32F103C8</McuID>
-  <MCUDefinitionFile>STM32F1xxxx/DeviceDefinitions/stm32f103xb.xml</MCUDefinitionFile>
+  <McuID>STM32F103RC</McuID>
+  <MCUDefinitionFile>STM32F1xxxx/DeviceDefinitions/stm32f103xe.xml</MCUDefinitionFile>
   <MCUProperties>
     <Entries>
       <KeyValue>
@@ -13,7 +13,7 @@
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.toolchainoptions.arm.libctype</Key>
-        <Value>--specs=nano.specs</Value>
+        <Value>--specs=nano.specs -u _printf_float</Value>
       </KeyValue>
       <KeyValue>
         <Key>com.sysprogs.toolchainoptions.arm.compactcpp</Key>
