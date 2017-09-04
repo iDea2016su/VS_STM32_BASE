@@ -1,11 +1,10 @@
 #include "IUsart.h"
-
-static const u8 priority[12][2] = { 0, 0, 0, 1, 0, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2, 3, 0, 3, 1, 3, 2 };
+#include "string.h"
+const uint8_t IPriority[12][2] = { 0, 0, 0, 1, 0, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2, 3, 0, 3, 1, 3, 2 };
 
 IUsart::IUsart()
 {
 }
-
 
 IUsart::~IUsart()
 {
@@ -21,6 +20,10 @@ IUsart::IUsart(USART_TypeDef* usartx,
 	USART_InitTypeDef    USART_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 	IUsart::USARTx = usartx;
+	IUsart::Ipri = pri;
+	IUsart::Party = party;
+	IUsart::StopBits = stopbits;
+	IUsart::WordLen = wordlen;
 	if (usartx == USART1)
 	{
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE); 
@@ -94,8 +97,8 @@ IUsart::IUsart(USART_TypeDef* usartx,
 		NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;
 	}			  
 #endif // HD
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = priority[pri][0];
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = priority[pri][1];		
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = IPriority[pri][0];
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = IPriority[pri][1];		
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			
 	NVIC_Init(&NVIC_InitStructure);	
 	USART_InitStructure.USART_BaudRate = bound;
@@ -117,4 +120,30 @@ void IUsart::sendStr(char *str)
 		USARTx->DR = (*str);
 		str++;
 	}
+}
+
+void IUsart::config(u32 bound, uint16_t stopbits, uint16_t party, uint16_t wordlen)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+	USART_InitTypeDef    USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = IPriority[Ipri][0];
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = IPriority[Ipri][1];		
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			
+	NVIC_Init(&NVIC_InitStructure);	
+	USART_InitStructure.USART_BaudRate = bound;
+	USART_InitStructure.USART_WordLength = wordlen;
+	USART_InitStructure.USART_StopBits = stopbits;
+	USART_InitStructure.USART_Parity = party; 
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; 
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	 
+	USART_Init(USARTx, &USART_InitStructure); 
+	USART_ITConfig(USARTx, USART_IT_RXNE, ENABLE); 
+	USART_Cmd(USARTx, ENABLE); 
+}
+
+
+void IUsart::clear()
+{
+	memset(BUF, 0, 500);
 }

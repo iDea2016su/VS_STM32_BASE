@@ -104,7 +104,9 @@ VisualGDB/Debug/nb.o: nb.cpp nb.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
+ IUsart.h \
+ C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h
 
 nb.h:
 
@@ -319,3 +321,7 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc:
+
+IUsart.h:
+
+C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h:

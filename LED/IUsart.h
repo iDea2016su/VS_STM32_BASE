@@ -2,6 +2,8 @@
 #include <string>
 #include <stm32f10x_usart.h>
 using namespace std;
+
+extern const uint8_t IPriority[12][2];
 class IUsart
 {
 public:
@@ -11,6 +13,8 @@ public:
 	void sendStr(char * str);
 	void sendChar(u8 c);
 	void sendInt(int data);
+	void config(u32 bound,uint16_t stopbits, uint16_t party, uint16_t wordlen);
+	void clear();
 	u8 BUF[500];
 private:
 	u32 BoundRate;

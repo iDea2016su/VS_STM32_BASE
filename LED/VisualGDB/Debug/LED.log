@@ -1,9 +1,9 @@
 ﻿  LEDBlink.cpp
   LEDBlink.cpp: In function 'int main()':
-LEDBlink.cpp(20,27): warning :  ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+LEDBlink.cpp(27,27): warning :  ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
      uart.sendStr("hello\r\n");
                              ^
   Linking ../VisualGDB/Debug/LED...
   ------------------- Memory utilization report -------------------
-  Used FLASH: 5468 bytes out of 64KB (8%)
-  Used RAM: 216 bytes out of 20KB (1%)
+  Used FLASH: 7316 bytes out of 64KB (11%)
+  Used RAM: 340 bytes out of 20KB (1%)

@@ -1,0 +1,23 @@
+#pragma once
+#include "sys.h"
+#include <IUsart.h>
+#include <stm32f10x_tim.h>
+
+class ITimer
+{
+public:
+	ITimer();
+	ITimer(u16 period, u8 priporty); //ITimer(u16 period, u8 priporty, void(*fun)(int));
+	~ITimer();
+	void countAdd();
+	void countSub();
+	void start();
+	void stop();
+	static u8 getNumber();
+	static ITimer* itm;
+	//void(*Ifun)(int p);
+	u8 Ipriporty;
+	u16 Iperiod;
+private:
+	static u8 number;
+};

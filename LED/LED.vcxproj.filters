@@ -121,9 +121,6 @@
     <ClCompile Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\CoreSupport\core_cm3.c">
       <Filter>Source files\Device-specific files\StdPeriph</Filter>
     </ClCompile>
-    <ClCompile Include="timer.cpp">
-      <Filter>Source files\App</Filter>
-    </ClCompile>
     <ClCompile Include="sys.cpp">
       <Filter>Source files\SYS</Filter>
     </ClCompile>
@@ -143,6 +140,9 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="IUsart.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="ITimer.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -236,9 +236,6 @@
     <ClInclude Include="C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h">
       <Filter>Header files\Device-specific files\StdPeriph</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Header files\user</Filter>
-    </ClInclude>
     <ClInclude Include="sys.h">
       <Filter>Header files\user</Filter>
     </ClInclude>
@@ -255,6 +252,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="IUsart.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="ITimer.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
