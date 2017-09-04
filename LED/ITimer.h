@@ -16,8 +16,11 @@ public:
 	static u8 getNumber();
 	static ITimer** itm;
 	void(*Ifun)();
+	void setCount(u8 c);
+	u8 getCount();
 	u8 Ipriporty;
 	u16 Iperiod;
 private:
 	static u8 number;
+	u8 Icount;
 };

@@ -1,15 +1,8 @@
 ﻿  ITimer.cpp
-  LEDBlink.cpp
   C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h(8301):
   sys.h(2):
   ITimer.h(2):
   ITimer.cpp(1):
-D:\GitHub\VS_STM32_BASE\LED\stm32f10x_conf.h(72): warning :  "assert_param" redefined
-   #define assert_param(expr) ((void)0)
-   
-  C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h(8301):
-  sys.h(2):
-  LEDBlink.cpp(1):
 D:\GitHub\VS_STM32_BASE\LED\stm32f10x_conf.h(72): warning :  "assert_param" redefined
    #define assert_param(expr) ((void)0)
    
@@ -19,16 +12,7 @@ D:\GitHub\VS_STM32_BASE\LED\stm32f10x_conf.h(72): warning :  "assert_param" rede
   C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h(54): note :  this is the location of the previous definition
    #define assert_param(expr)
    
-  sys.h(2):
-  LEDBlink.cpp(1):
-  C:\Users\iDea\AppData\Local\VisualGDB\EmbeddedBSPs\arm-eabi\com.sysprogs.arm.stm32\STM32F1xxxx\CMSIS_StdPeriph\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h(54): note :  this is the location of the previous definition
-   #define assert_param(expr)
-   
-  LEDBlink.cpp: In function 'int main()':
-LEDBlink.cpp(57,27): warning :  ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
-     uart.sendStr("hello\r\n");
-                             ^
   Linking ../VisualGDB/Debug/LED...
   ------------------- Memory utilization report -------------------
-  Used FLASH: 21KB out of 256KB (8%) [-64]
-  Used RAM: 728 bytes out of 64KB (1%)
+  Used FLASH: 21KB out of 256KB (8%) [+248]
+  Used RAM: 1240 bytes out of 64KB (1%)
