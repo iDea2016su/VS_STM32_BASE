@@ -1,6 +1,4 @@
 #include "ITimer.h"
-#include "delay.h"
-#include "led.h"
 
 extern const uint8_t IPriority[12][2];
 
@@ -11,21 +9,60 @@ ITimer::ITimer()
 {
 }
 
-
 ITimer::~ITimer()
 {
 }
-
 
 void ITimer::countAdd()
 {
 	number++;
 }
 
-
 void ITimer::countSub()
 {
 	number--;
+}
+
+void ITimer::start()
+{
+	status = 1;
+	if (this->getCount() == 1)
+	{
+		TIM_Cmd(TIM3, ENABLE);  
+	}
+	else if (this->getCount() == 2)
+	{
+		TIM_Cmd(TIM4, ENABLE);  
+	}
+	else if(this->getCount() == 3)
+	{
+		TIM_Cmd(TIM5, ENABLE);  
+	}
+    else if(this->getCount() == 4)
+	{
+		TIM_Cmd(TIM2, ENABLE);  
+	}
+}
+
+void ITimer::stop()
+{
+	status = 0;
+	if (this->getCount() == 1)
+	{
+		TIM_Cmd(TIM3, DISABLE);  
+	}
+	else if (this->getCount() == 2)
+	{
+		TIM_Cmd(TIM4, DISABLE);  
+	}
+	else if (this->getCount() == 3)
+	{
+		TIM_Cmd(TIM5, DISABLE);  
+	}
+	else if (this->getCount() == 4)
+	{
+		TIM_Cmd(TIM2, DISABLE);  
+	}
 }
 
 ITimer::ITimer(u16 period, 
@@ -88,22 +125,22 @@ ITimer::ITimer(u16 period,
 	case 1:
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);  
 		TIM_ITConfig(TIM3, TIM_IT_Update |  TIM_IT_Trigger, ENABLE);
-		TIM_Cmd(TIM3, ENABLE);  
+	//	TIM_Cmd(TIM3, ENABLE);  
 		break;
 	case 2:
 		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);  
 		TIM_ITConfig(TIM4, TIM_IT_Update |  TIM_IT_Trigger, ENABLE);
-		TIM_Cmd(TIM4, ENABLE);  
+	//	TIM_Cmd(TIM4, ENABLE);  
 		break;
 	case 3:
 		TIM_ClearITPendingBit(TIM5, TIM_IT_Update);  
 		TIM_ITConfig(TIM5, TIM_IT_Update |  TIM_IT_Trigger, ENABLE);
-		TIM_Cmd(TIM5, ENABLE);  
+	//	TIM_Cmd(TIM5, ENABLE);  
 		break;
 	case 4:
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);  
 		TIM_ITConfig(TIM2, TIM_IT_Update |  TIM_IT_Trigger, ENABLE);
-		TIM_Cmd(TIM2, ENABLE);  
+	//	TIM_Cmd(TIM2, ENABLE);  
 		break;
 	default:break;
 	}
@@ -121,8 +158,6 @@ u8 ITimer::getCount()
 {
 	return Icount;
 }
-
-extern LED led;
 
 extern "C" 	void TIM3_IRQHandler(void)    
 {
@@ -175,7 +210,6 @@ extern "C" 	void TIM5_IRQHandler(void)
 		}
 	}
 }
-
 extern "C" 	void TIM2_IRQHandler(void)    
 {
 	u8 n, i;

@@ -23,4 +23,5 @@ public:
 private:
 	static u8 number;
 	u8 Icount;
+	bool status;
 };

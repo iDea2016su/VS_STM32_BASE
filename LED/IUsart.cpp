@@ -1,7 +1,9 @@
-#include "IUsart.h"
+﻿#include "IUsart.h"
 #include "string.h"
-const uint8_t IPriority[12][2] = { 0, 1, 0, 2, 0, 3, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3 };
 
+const uint8_t IPriority[12][2] = { 0, 1, 0, 2, 0, 3, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3 };
+u8 IUsart::number = 0;
+IUsart** IUsart::ust = new IUsart*[5];
 IUsart::IUsart()
 {
 }
@@ -24,6 +26,8 @@ IUsart::IUsart(USART_TypeDef* usartx,
 	IUsart::Party = party;
 	IUsart::StopBits = stopbits;
 	IUsart::WordLen = wordlen;
+	ust[number] = this;
+	number++;
 	if (usartx == USART1)
 	{
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1 | RCC_APB2Periph_GPIOA, ENABLE); 
@@ -114,7 +118,7 @@ IUsart::IUsart(USART_TypeDef* usartx,
 
 void IUsart::sendStr(char *str)
 {
-	while((*str) != 0)
+	while ((*str) != 0)
 	{
 		while ((USARTx->SR & 0X40) == 0); 
 		USARTx->DR = (*str);
@@ -145,5 +149,96 @@ void IUsart::config(u32 bound, uint16_t stopbits, uint16_t party, uint16_t wordl
 
 void IUsart::clear()
 {
+	receiveLen = 0;
 	memset(BUF, 0, 500);
+}
+
+
+void IUsart::open()
+{
+	status = 1;
+	USART_Cmd(USARTx, ENABLE); 
+}
+
+void IUsart::close()
+{
+	status = 0;
+	USART_Cmd(USARTx, DISABLE); 
+}
+
+void IUsart::sendHex(u8* hex, int len)
+{
+	int i = 0;
+	for (i = 0; i < len; i++)
+	{
+		while ((USARTx->SR & 0X40) == 0)
+			; 
+		USARTx->DR = (*hex);
+		hex++;
+	}
+}
+void IUsart::sendChar(u8 c)
+{
+	while ((USARTx->SR & 0X40) == 0)
+		; 
+	USARTx->DR = c;
+}
+void IUsart::bufSub()
+{
+	bufLen--;
+}
+
+void IUsart::bufAdd()
+{
+	bufLen++;
+}
+
+void IUsart::setCount(u8 c)
+{
+	number = c;
+}
+u8 IUsart::getNumber()
+{
+	return number;
+}
+USART_TypeDef* IUsart::getUst()
+{
+	return USARTx;
+}
+
+
+void IUsart::receive(u8 h)
+{
+	BUF[receiveLen] = h;
+	receiveLen++;
+}
+
+
+int IUsart::getReceiveLen()
+{
+	return receiveLen;
+}
+
+
+u8 * IUsart::getBuf()
+{
+	return BUF;
+}
+extern "C" void USART1_IRQHandler(void)                 
+{
+	u8 data;
+	u8 n, i;
+	if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  
+	{
+		data = USART_ReceiveData(USART1); 
+		n = IUsart::getNumber();
+		for (i = 0; i < n; i++)
+		{
+			if (IUsart::ust[i]->getUst() == USART1)
+			{
+				IUsart::ust[i]->receive(data);
+				break;
+			}
+		}
+	} 
 }

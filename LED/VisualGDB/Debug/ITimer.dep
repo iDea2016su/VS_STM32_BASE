@@ -125,8 +125,7 @@ VisualGDB/Debug/ITimer.o: ITimer.cpp ITimer.h sys.h \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\errno.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
- c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
- delay.h led.h
+ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc
 
 ITimer.h:
 
@@ -385,7 +384,3 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc:
-
-delay.h:
-
-led.h:
