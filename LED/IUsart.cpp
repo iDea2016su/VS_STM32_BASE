@@ -1,5 +1,6 @@
 ﻿#include "IUsart.h"
 #include "string.h"
+#include "delay.h"
 
 const uint8_t IPriority[12][2] = { 0, 1, 0, 2, 0, 3, 1, 1, 1, 2, 1, 3, 2, 1, 2, 2, 2, 3, 3, 1, 3, 2, 3, 3 };
 u8 IUsart::number = 0;
@@ -125,6 +126,16 @@ void IUsart::sendStr(char *str)
 		str++;
 	}
 }
+void IUsart::sendStr(const char * str)
+{
+	while ((*str) != 0)
+	{
+		while ((USARTx->SR & 0X40) == 0)
+			; 
+		USARTx->DR = (*str);
+		str++;
+	}
+}
 
 void IUsart::config(u32 bound, uint16_t stopbits, uint16_t party, uint16_t wordlen)
 {
@@ -242,3 +253,55 @@ extern "C" void USART1_IRQHandler(void)
 		}
 	} 
 }
+
+void IUsart::sendStrwithRep(char* str, char* rep,u8 num,bool log)
+{
+	int test_num = 0;
+	int i = 0;
+	while (1)
+	{   
+		test_num++;
+		receiveLen = 0;
+		memset(BUF, 0, 500);
+		while ((*str) != 0)
+		{
+			while ((USARTx->SR & 0X40) == 0); 
+			USARTx->DR = (*str);
+			str++;
+		}
+		while (i<100)
+		{
+			i++;
+			delay_ms(50);
+			if ((NULL != strstr((const char *)BUF, (const char *)rep)))
+			{
+				break;
+			}
+			else if ((NULL != strstr((const char *)BUF, (const char *)"ERROR")))
+			{
+				break;
+			}	
+		}
+		if (log)
+		{
+			printf("%s %d cmd:%s,rsp:%s\n", __func__, __LINE__, rep, (const char *)BUF);
+		}
+		if ((NULL != strstr((const char *)BUF, (const char *)rep)))
+		{
+			test_num = 0;
+			break;
+		}
+		else 
+		{
+			delay_ms(100);
+		}
+		if (test_num >= num) 
+		{
+			test_num = 0;
+			NVIC_SystemReset();
+		}
+	}
+}
+
+
+

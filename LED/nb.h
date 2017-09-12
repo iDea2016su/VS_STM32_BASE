@@ -9,18 +9,16 @@ class NB
 public:
 	NB();
 	~NB();
-	NB(string ipp,string soc,string pd,string pl,u8 scr,u8 simO);
-	void connect(void);
+	NB(IUsart iusport, char* iip, char* isocket, char* ipdp, char* iplmn, bool iscramble, u8 isimO);
+	void connectUdp();
 private:
-	
-	string ip;
-	string socket;
-	string pdp;
-	string plmn; 
-	string imei;
-	u8 scramble;
-	u8 simOperator;
-	
-	IUsart usport;
+	char* IIp;
+	char* ISocket;
+	char* IPdp;
+	char* IPlmn; 
+	char* IImei;
+	u8 IScramble;
+	u8 ISimOperator;
+	IUsart IUsport;
 };
 

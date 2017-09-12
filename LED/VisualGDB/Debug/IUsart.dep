@@ -127,7 +127,7 @@ VisualGDB/Debug/IUsart.o: IUsart.cpp IUsart.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\string.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h delay.h
 
 IUsart.h:
 
@@ -388,3 +388,5 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc:
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\string.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h:
+
+delay.h:

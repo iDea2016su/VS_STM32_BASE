@@ -11,6 +11,8 @@ public:
 	IUsart(USART_TypeDef* usartx,u32 bound,u8 pri,uint16_t stopbits,uint16_t party,uint16_t wordlen);
 	~IUsart();
 	void sendStr(char * str);
+	void sendStr(const char * str);
+	void sendStrwithRep(char* str,char* rep,u8 num,bool log);
 	void sendChar(u8 c);
 	void sendInt(int data);
 	void sendHex(u8* hex, int len);

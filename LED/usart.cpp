@@ -62,8 +62,3 @@ void Usart1_print(char *str)
 	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET); 
 	USART_SendData(USART1,'\n');
 }
-void sendchar(char *ch)
-{
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET); 
-	USART_SendData(USART1, *ch);
-}

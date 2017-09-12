@@ -126,7 +126,7 @@ VisualGDB/Debug/nb.o: nb.cpp nb.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
- IUsart.h
+ IUsart.h flash.h stmflash.h
 
 nb.h:
 
@@ -385,3 +385,7 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc:
 
 IUsart.h:
+
+flash.h:
+
+stmflash.h:

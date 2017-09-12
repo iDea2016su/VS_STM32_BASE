@@ -33,7 +33,21 @@ VisualGDB/Debug/LEDBlink.o: LEDBlink.cpp sys.h \
  C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/stm32f10x_usart.h \
  C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/stm32f10x_wwdg.h \
  C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/misc.h \
- delay.h led.h D:/GitHub/VS_STM32_BASE/LED/IUsart.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\string.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\newlib.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\config.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\ieeefp.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\reent.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
+ c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stddef.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_types.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_types.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\lock.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\cdefs.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_locale.h \
+ c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h delay.h led.h \
+ D:/GitHub/VS_STM32_BASE/LED/IUsart.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\string \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\arm-eabi\thumb\cortex_m3\bits\c++config.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\arm-eabi\thumb\cortex_m3\bits\os_defines.h \
@@ -61,18 +75,7 @@ VisualGDB/Debug/LEDBlink.o: LEDBlink.cpp sys.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\postypes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\cwchar \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\wchar.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\newlib.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\config.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\ieeefp.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\reent.h \
- c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stddef.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_types.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_types.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\lock.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\cdefs.h \
  c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stdarg.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_locale.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\cstdint \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\allocator.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\arm-eabi\thumb\cortex_m3\bits\c++allocator.h \
@@ -86,7 +89,6 @@ VisualGDB/Debug/LEDBlink.o: LEDBlink.cpp sys.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\arm-eabi\thumb\cortex_m3\bits\c++locale.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\clocale \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\locale.h \
- c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\iosfwd \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\cctype \
  c:\sysgcc\arm-eabi\arm-eabi\sys-include\ctype.h \
@@ -126,7 +128,7 @@ VisualGDB/Debug/LEDBlink.o: LEDBlink.cpp sys.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
- D:/GitHub/VS_STM32_BASE/LED/ITimer.h
+ D:/GitHub/VS_STM32_BASE/LED/ITimer.h flash.h usart.h IRam.h
 
 sys.h:
 
@@ -198,6 +200,34 @@ C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm
 
 C:/Users/iDea/AppData/Local/VisualGDB/EmbeddedBSPs/arm-eabi/com.sysprogs.arm.stm32/STM32F1xxxx/STM32F10x_StdPeriph_Driver/inc/misc.h:
 
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\string.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\newlib.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\config.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\ieeefp.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\reent.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h:
+
+c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stddef.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_types.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_types.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\lock.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\cdefs.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_locale.h:
+
+c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\string.h:
+
 delay.h:
 
 led.h:
@@ -258,29 +288,7 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\cwchar:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\wchar.h:
 
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\newlib.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\config.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\ieeefp.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\reent.h:
-
-c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stddef.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_types.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\machine\_types.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\lock.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\cdefs.h:
-
 c:\sysgcc\arm-eabi\lib\gcc\arm-eabi\6.2.0\include\stdarg.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\sys\_locale.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\cstdint:
 
@@ -307,8 +315,6 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\arm-eabi\thumb\cortex_m3\bits\c++l
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\clocale:
 
 c:\sysgcc\arm-eabi\arm-eabi\sys-include\locale.h:
-
-c:\sysgcc\arm-eabi\arm-eabi\sys-include\_ansi.h:
 
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\iosfwd:
 
@@ -389,3 +395,9 @@ c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h:
 c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc:
 
 D:/GitHub/VS_STM32_BASE/LED/ITimer.h:
+
+flash.h:
+
+usart.h:
+
+IRam.h:

@@ -5,20 +5,35 @@
     <CustomSourceDirectories>
       <Directories />
       <PathStyle>MinGWUnixSlash</PathStyle>
+      <LocalDirForAbsolutePaths />
+      <LocalDirForRelativePaths />
     </CustomSourceDirectories>
     <MainSourceDirectory>$(ProjectDir)</MainSourceDirectory>
     <EmbeddedProfileFile>stm32.xml</EmbeddedProfileFile>
   </Project>
   <Build xsi:type="com.visualgdb.build.msbuild">
+    <ToolchainID>
+      <ID>com.visualgdb.arm-eabi</ID>
+      <Version>
+        <GCC>6.2.0</GCC>
+        <GDB>7.12</GDB>
+        <Revision>4</Revision>
+      </Version>
+    </ToolchainID>
     <ProjectFile>LED.vcxproj</ProjectFile>
     <RemoteBuildEnvironment>
       <Records />
       <EnvironmentSetupFiles />
     </RemoteBuildEnvironment>
     <ParallelJobCount>1</ParallelJobCount>
+    <SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
   </Build>
   <Debug xsi:type="com.visualgdb.debug.embedded">
-    <AdditionalStartupCommands />
+    <AdditionalStartupCommands>
+      <GDBPreStartupCommands />
+      <GDBStartupCommands />
+      <GDBFinalizationCommands />
+    </AdditionalStartupCommands>
     <AdditionalGDBSettings>
       <Features>
         <DisableAutoDetection>false</DisableAutoDetection>
@@ -48,69 +63,26 @@
       <EnableAsyncExecutionMode>false</EnableAsyncExecutionMode>
       <EnableNonStopMode>false</EnableNonStopMode>
     </AdditionalGDBSettings>
-    <DebugMethodID>jlink-jtag</DebugMethodID>
-    <DebugMethodProperties>
-      <Entries>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.root</Key>
-          <Value>C:\Program Files (x86)\SEGGER\JLink_V490</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.connection</Key>
-          <Value>USB</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.targetdevice</Key>
-          <Value>$$SYS:MCU_ID$$</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.targetinterface</Key>
-          <Value>JTAG</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.speed</Key>
-          <Value>auto</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.resetcommand</Key>
-          <Value>mon reset</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.resetafterload</Key>
-          <Value />
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.livememoryengine</Key>
-          <Value>stub</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.program</Key>
-          <Value>load</Value>
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.autoprogram</Key>
-          <Value />
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.commands.beforeconnect</Key>
-          <Value />
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.commands.beforeload</Key>
-          <Value />
-        </KeyValue>
-        <KeyValue>
-          <Key>com.sysprogs.jlink.commands.afterload</Key>
-          <Value />
-        </KeyValue>
-      </Entries>
-    </DebugMethodProperties>
+    <DebugMethod>
+      <ID>jlink-jtag</ID>
+      <Configuration xsi:type="com.visualgdb.edp.segger.settings">
+        <CommandLine>-select USB -device STM32F103RC -speed auto -if JTAG</CommandLine>
+        <ProgramMode>Enabled</ProgramMode>
+        <StartupCommands>
+          <string>target remote :$$SYS:GDB_PORT$$</string>
+          <string>load</string>
+          <string>mon reset</string>
+        </StartupCommands>
+        <UseUnreliableLiveMemoryEngine>false</UseUnreliableLiveMemoryEngine>
+      </Configuration>
+    </DebugMethod>
     <AutoDetectRTOS>true</AutoDetectRTOS>
     <SemihostingSupport>Auto</SemihostingSupport>
     <StepIntoEntryPoint>false</StepIntoEntryPoint>
     <ReloadFirmwareOnReset>false</ReloadFirmwareOnReset>
     <ValidateEndOfStackAddress>true</ValidateEndOfStackAddress>
     <StopAtEntryPoint>false</StopAtEntryPoint>
+    <CheckInterfaceDrivers>true</CheckInterfaceDrivers>
     <DynamicAnalysisSettings>
       <StackVerifier>
         <VerifyStackBounds>false</VerifyStackBounds>
@@ -127,6 +99,7 @@
       </RealTimeWatch>
     </DynamicAnalysisSettings>
     <EndOfStackSymbol>_estack</EndOfStackSymbol>
+    <TimestampProviderTicksPerSecond>0</TimestampProviderTicksPerSecond>
   </Debug>
   <CustomBuild>
     <PreSyncActions />
@@ -141,6 +114,56 @@
     <DebugStopActions />
     <BreakMode>Default</BreakMode>
   </CustomDebug>
+  <DeviceTerminalSettings>
+    <Connection xsi:type="com.sysprogs.terminal.connection.serial">
+      <ComPortName>COM36</ComPortName>
+      <AdvancedSettings>
+        <BaudRate>9600</BaudRate>
+        <DataBits>8</DataBits>
+        <Parity>None</Parity>
+        <StopBits>One</StopBits>
+        <FlowControl>None</FlowControl>
+      </AdvancedSettings>
+    </Connection>
+    <EchoTypedCharacters>true</EchoTypedCharacters>
+    <DisplayMode>ASCII</DisplayMode>
+    <Colors>
+      <Background>
+        <Alpha>255</Alpha>
+        <Red>0</Red>
+        <Green>0</Green>
+        <Blue>0</Blue>
+      </Background>
+      <Disconnected>
+        <Alpha>255</Alpha>
+        <Red>169</Red>
+        <Green>169</Green>
+        <Blue>169</Blue>
+      </Disconnected>
+      <Text>
+        <Alpha>255</Alpha>
+        <Red>211</Red>
+        <Green>211</Green>
+        <Blue>211</Blue>
+      </Text>
+      <Echo>
+        <Alpha>255</Alpha>
+        <Red>144</Red>
+        <Green>238</Green>
+        <Blue>144</Blue>
+      </Echo>
+    </Colors>
+    <HexSettings>
+      <MaximumBytesPerLine>16</MaximumBytesPerLine>
+      <ShowTextView>true</ShowTextView>
+      <BreaksAroundEcho>true</BreaksAroundEcho>
+      <AutoSend>true</AutoSend>
+      <SendAsHex>true</SendAsHex>
+      <TimeoutForAutoBreak>0</TimeoutForAutoBreak>
+    </HexSettings>
+    <LineEnding>LF</LineEnding>
+    <TreatLFAsCRLF>false</TreatLFAsCRLF>
+  </DeviceTerminalSettings>
   <CustomShortcuts>
     <Shortcuts />
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
@@ -154,8 +177,9 @@
     <ExternalSourceFileList />
     <ExtraSettings>
       <HideErrorsInSystemHeaders>true</HideErrorsInSystemHeaders>
+      <SupportLightweightReferenceAnalysis>false</SupportLightweightReferenceAnalysis>
       <DiscoverySettings>
-        <Mode>Silent</Mode>
+        <Mode>Enabled</Mode>
         <SearchInProjectDir>true</SearchInProjectDir>
         <SearchInSourceDirs>true</SearchInSourceDirs>
         <SearchInIncludeSubdirs>true</SearchInIncludeSubdirs>
@@ -163,6 +187,49 @@
         <IgnoredHeaders />
       </DiscoverySettings>
     </ExtraSettings>
+    <CodeAnalyzerSettings>
+      <Enabled>false</Enabled>
+      <SelectedAnalyzers>
+        <string>core.builtin.BuiltinFunctions</string>
+        <string>core.builtin.NoReturnFunctions</string>
+        <string>core.CallAndMessage</string>
+        <string>core.DivideZero</string>
+        <string>core.DynamicTypePropagation</string>
+        <string>core.NonNullParamChecker</string>
+        <string>core.NullDereference</string>
+        <string>core.StackAddressEscape</string>
+        <string>core.UndefinedBinaryOperatorResult</string>
+        <string>core.uninitialized.ArraySubscript</string>
+        <string>core.uninitialized.Assign</string>
+        <string>core.uninitialized.Branch</string>
+        <string>core.uninitialized.CapturedBlockVariable</string>
+        <string>core.uninitialized.UndefReturn</string>
+        <string>core.VLASize</string>
+        <string>cplusplus.NewDelete</string>
+        <string>cplusplus.NewDeleteLeaks</string>
+        <string>deadcode.DeadStores</string>
+        <string>nullability.NullPassedToNonnull</string>
+        <string>nullability.NullReturnedFromNonnull</string>
+        <string>security.insecureAPI.getpw</string>
+        <string>security.insecureAPI.gets</string>
+        <string>security.insecureAPI.mkstemp</string>
+        <string>security.insecureAPI.mktemp</string>
+        <string>security.insecureAPI.UncheckedReturn</string>
+        <string>security.insecureAPI.vfork</string>
+        <string>unix.API</string>
+        <string>unix.cstring.BadSizeArg</string>
+        <string>unix.cstring.NullArg</string>
+        <string>unix.Malloc</string>
+        <string>unix.MallocSizeof</string>
+        <string>unix.MismatchedDeallocator</string>
+        <string>unix.Vfork</string>
+      </SelectedAnalyzers>
+      <ExtraArguments>
+        <string>-analyzer-store=region</string>
+        <string>-analyzer-opt-analyze-nested-blocks</string>
+        <string>-analyzer-eagerly-assume</string>
+      </ExtraArguments>
+    </CodeAnalyzerSettings>
   </CodeSense>
   <BuildContextDirectory>VisualGDB\VisualGDBCache</BuildContextDirectory>
 </VisualGDBProjectSettings2>
