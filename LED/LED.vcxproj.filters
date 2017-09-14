@@ -58,9 +58,6 @@
     <ClCompile Include="usart.cpp">
       <Filter>Source files\SYS</Filter>
     </ClCompile>
-    <ClCompile Include="nb.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="IUsart.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
@@ -223,6 +220,9 @@
     <ClCompile Include="IRam.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="INb.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LED-Debug.vgdbsettings">
@@ -248,9 +248,6 @@
     <ClInclude Include="usart.h">
       <Filter>Header files\user</Filter>
     </ClInclude>
-    <ClInclude Include="nb.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="IUsart.h">
       <Filter>Header files</Filter>
     </ClInclude>
@@ -261,6 +258,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="IRam.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="INb.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

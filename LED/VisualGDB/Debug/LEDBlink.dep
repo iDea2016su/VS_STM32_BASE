@@ -128,7 +128,7 @@ VisualGDB/Debug/LEDBlink.o: LEDBlink.cpp sys.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
- D:/GitHub/VS_STM32_BASE/LED/ITimer.h flash.h usart.h IRam.h
+ D:/GitHub/VS_STM32_BASE/LED/ITimer.h flash.h usart.h IRam.h INb.h
 
 sys.h:
 
@@ -401,3 +401,5 @@ flash.h:
 usart.h:
 
 IRam.h:
+
+INb.h:

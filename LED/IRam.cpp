@@ -1,5 +1,6 @@
 ﻿#include "IRam.h"
 #include "flash.h"
+#include "IUsart.h"
 
 using namespace flash;
 
@@ -11,7 +12,7 @@ using namespace flash;
 #define STM32_FLASH_BASE 0x08000000
 static u16 STMFLASH_BUF[STM_SECTOR_SIZE / 2]; 
 const u8 flag[4] = { 0, 250, 50, 0 };
-
+extern IUsart uart;
 IRam::IRam(int size)
 {
 	ISize = size;
@@ -28,7 +29,6 @@ IRam::IRam(int size)
 	{
 		IStatus = 1;
 	}
-	read(FLASH_CONFIG, (u16*)cnofig, 4);
 }
 
 
@@ -38,14 +38,17 @@ IRam::~IRam()
 
 
 void IRam::store(u32 WriteAddr, 
-	u16 *pBuffer, 
+	string &buf, 
 	u16 NumToWrite)
 {
+	u16 *pBuffer = (u16 *)buf.c_str();
+	u16 *Buffer = new u16[20];
 	if (!IStatus)
 	{
 		write(WriteAddr, pBuffer, NumToWrite);
 	}
-	read(WriteAddr, pBuffer, NumToWrite);
+	read(WriteAddr, Buffer, NumToWrite);
+	buf = (char*)Buffer;
 }
 
 
@@ -53,6 +56,8 @@ void IRam::write(u32 WriteAddr,
 	u16 *pBuffer, 
 	u16 NumToWrite)
 {
+	
+		
 	u32 secpos; 	   //扇区地址
 	u16 secoff; 	   //扇区内偏移地址(16位字计算)
 	u16 secremain;  //扇区内剩余地址(16位字计算)	   

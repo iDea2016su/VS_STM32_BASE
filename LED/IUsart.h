@@ -12,7 +12,8 @@ public:
 	~IUsart();
 	void sendStr(char * str);
 	void sendStr(const char * str);
-	void sendStrwithRep(char* str,char* rep,u8 num,bool log);
+	void sendStr(u8 * str);
+	void sendStrwithRep(string str,const char* rep,u8 num);
 	void sendChar(u8 c);
 	void sendInt(int data);
 	void sendHex(u8* hex, int len);
@@ -43,3 +44,4 @@ private:
 	int receiveLen;
 };
 
+void print(const char* str);

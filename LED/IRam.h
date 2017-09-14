@@ -10,7 +10,7 @@ class IRam
 public:
 	IRam(int size);
 	~IRam();
-	void store(u32 WriteAddr, u16 *pBuffer, u16 NumToWrite);
+	void store(u32 WriteAddr,string & buf, u16 NumToWrite);
 	void read (u32 ReadAddr, u16 *pBuffer, u16 NumToRead);
 	void write(u32 WriteAddr, u16 *pBuffer, u16 NumToWrite);
 	u8 getStatus();

@@ -55,12 +55,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="delay.cpp" />
+    <ClCompile Include="INb.cpp" />
     <ClCompile Include="IRam.cpp" />
     <ClCompile Include="ITimer.cpp" />
     <ClCompile Include="IUsart.cpp" />
     <ClCompile Include="led.cpp" />
     <ClCompile Include="LEDBlink.cpp" />
-    <ClCompile Include="nb.cpp" />
     <ClCompile Include="sys.cpp" />
     <ClCompile Include="system_stm32f10x.c" />
     <ClCompile Include="usart.cpp" />
@@ -124,11 +124,11 @@
   <ItemGroup>
     <ClInclude Include="delay.h" />
     <ClInclude Include="flash.h" />
+    <ClInclude Include="INb.h" />
     <ClInclude Include="IRam.h" />
     <ClInclude Include="ITimer.h" />
     <ClInclude Include="IUsart.h" />
     <ClInclude Include="led.h" />
-    <ClInclude Include="nb.h" />
     <ClInclude Include="sys.h" />
     <ClInclude Include="usart.h" />
   </ItemGroup>

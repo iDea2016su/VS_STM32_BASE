@@ -137,6 +137,16 @@ void IUsart::sendStr(const char * str)
 	}
 }
 
+
+void IUsart::sendStr(u8 * str)
+{
+	while ((*str) != 0)
+	{
+		while ((USARTx->SR & 0X40) == 0); 
+		USARTx->DR = (*str);
+		str++;
+	}
+}
 void IUsart::config(u32 bound, uint16_t stopbits, uint16_t party, uint16_t wordlen)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -235,6 +245,63 @@ u8 * IUsart::getBuf()
 {
 	return BUF;
 }
+
+void IUsart::sendStrwithRep(string stri, const char* rep, u8 num)
+{
+	int test_num = 0;
+	int i = 0;
+	const char * str = stri.c_str();
+	while (1)
+	{   
+		test_num++;
+		receiveLen = 0;
+		memset(BUF, 0, 500);
+		sendStr(str);
+		delay_ms(3000);
+
+#ifdef DEBUG
+		print("func:  ");
+		print(__func__);
+		print("\r\n");
+		print("Command:");
+		print(str);
+		print("\r\n");
+		print("Reply:");
+		print("(");
+		print(rep);
+		print(")");
+		print("\r\nreceive:");
+		print((const char *)BUF);	 
+		print("\r\n");
+#endif // DEBUG
+		if ((NULL != strstr((const char *)BUF, (const char *)rep)))
+		{
+			test_num = 0;
+			break;
+		}
+		else 
+		{
+			delay_ms(100);
+		}
+		if (test_num >= num) 
+		{
+			test_num = 0;
+			NVIC_SystemReset();
+		}
+	}
+}
+void print(const char* str)
+{
+	while ((*str) != 0)
+	{
+		while ((USART1->SR & 0X40) == 0)
+			; 
+		USART1->DR = (*str);
+		str++;
+	}
+}
+
+
 extern "C" void USART1_IRQHandler(void)                 
 {
 	u8 data;
@@ -253,54 +320,23 @@ extern "C" void USART1_IRQHandler(void)
 		}
 	} 
 }
-
-void IUsart::sendStrwithRep(char* str, char* rep,u8 num,bool log)
+extern "C" void USART2_IRQHandler(void)                 
 {
-	int test_num = 0;
-	int i = 0;
-	while (1)
-	{   
-		test_num++;
-		receiveLen = 0;
-		memset(BUF, 0, 500);
-		while ((*str) != 0)
+	u8 data;
+	u8 n, i;
+	if (USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)  
+	{
+		data = USART_ReceiveData(USART2); 
+		n = IUsart::getNumber();
+		for (i = 0; i < n; i++)
 		{
-			while ((USARTx->SR & 0X40) == 0); 
-			USARTx->DR = (*str);
-			str++;
-		}
-		while (i<100)
-		{
-			i++;
-			delay_ms(50);
-			if ((NULL != strstr((const char *)BUF, (const char *)rep)))
+			if (IUsart::ust[i]->getUst() == USART2)
 			{
+				IUsart::ust[i]->receive(data);
 				break;
 			}
-			else if ((NULL != strstr((const char *)BUF, (const char *)"ERROR")))
-			{
-				break;
-			}	
 		}
-		if (log)
-		{
-			printf("%s %d cmd:%s,rsp:%s\n", __func__, __LINE__, rep, (const char *)BUF);
-		}
-		if ((NULL != strstr((const char *)BUF, (const char *)rep)))
-		{
-			test_num = 0;
-			break;
-		}
-		else 
-		{
-			delay_ms(100);
-		}
-		if (test_num >= num) 
-		{
-			test_num = 0;
-			NVIC_SystemReset();
-		}
-	}
+	} 
 }
 
 
