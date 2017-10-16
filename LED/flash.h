@@ -41,4 +41,7 @@ namespace atcom
 	const string AT_NNMI = "AT+NNMI=2\r\n";
 	const string AT_NSOCR = "AT+NSOCR=DGRAM,17,1234,1\r\n";
 	const string AT_NSORF = "AT+NSORF=0,500\r\n";
+	
+	const string AT_CLOUD_IP = "AT+NCDP=192.168.102.51,5683\r\n";
+	
 }

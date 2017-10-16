@@ -13,7 +13,8 @@ public:
 	void sendStr(char * str);
 	void sendStr(const char * str);
 	void sendStr(u8 * str);
-	void sendStrwithRep(string str,const char* rep,u8 num);
+	void sendStrwithRep(string stri,const char* rep,u8 num);
+	void sendStrwithRep(string stri, const char* rep, int time,u8 num);
 	void sendChar(u8 c);
 	void sendInt(int data);
 	void sendHex(u8* hex, int len);
@@ -40,7 +41,7 @@ private:
 	u8 status;
 	int bufLen;
 	static u8 number;
-	u8 BUF[500];
+	u8 BUF[1000];
 	int receiveLen;
 };
 

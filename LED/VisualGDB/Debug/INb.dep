@@ -126,7 +126,7 @@ VisualGDB/Debug/INb.o: INb.cpp INb.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\functional_hash.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\hash_bytes.h \
  c:\sysgcc\arm-eabi\arm-eabi\include\c++\6.2.0\bits\basic_string.tcc \
- IUsart.h flash.h IRam.h uart.h
+ IUsart.h flash.h IRam.h uart.h delay.h
 
 INb.h:
 
@@ -391,3 +391,5 @@ flash.h:
 IRam.h:
 
 uart.h:
+
+delay.h:

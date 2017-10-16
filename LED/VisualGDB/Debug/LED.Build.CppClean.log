@@ -7,8 +7,6 @@ d:\github\vs_stm32_base\led\visualgdb\debug\iusart.o
 d:\github\vs_stm32_base\led\visualgdb\debug\led.o
 d:\github\vs_stm32_base\led\visualgdb\debug\ledblink.o
 d:\github\vs_stm32_base\led\visualgdb\debug\misc.o
-d:\github\vs_stm32_base\led\visualgdb\debug\nb.o
-d:\github\vs_stm32_base\led\visualgdb\debug\stackandheap.o
 d:\github\vs_stm32_base\led\visualgdb\debug\startup_stm32f103xe.o
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_adc.o
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_bkp.o
@@ -44,8 +42,6 @@ d:\github\vs_stm32_base\led\visualgdb\debug\iusart.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\led.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\ledblink.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\misc.dep
-d:\github\vs_stm32_base\led\visualgdb\debug\nb.dep
-d:\github\vs_stm32_base\led\visualgdb\debug\stackandheap.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\startup_stm32f103xe.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_adc.dep
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_bkp.dep
@@ -81,8 +77,6 @@ d:\github\vs_stm32_base\led\visualgdb\debug\iusart.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\led.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\ledblink.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\misc.gcc.rsp
-d:\github\vs_stm32_base\led\visualgdb\debug\nb.gcc.rsp
-d:\github\vs_stm32_base\led\visualgdb\debug\stackandheap.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\startup_stm32f103xe.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_adc.gcc.rsp
 d:\github\vs_stm32_base\led\visualgdb\debug\stm32f10x_bkp.gcc.rsp

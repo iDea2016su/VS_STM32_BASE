@@ -41,7 +41,7 @@ int main()
 	delay_init();
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	nb.connectUdp();
-	nb.udpStrMsg("huka");
+   // nb.connectCoap();
    //s ITimer t(500,2,tf);
 //	ITimer t1(1000, 3, f);
 //	t.start();
@@ -49,8 +49,10 @@ int main()
 	//uart.sendStrwithRep(AT_CFUN_0, "OK", 10);
 	while (1)
 	{
+		//log.
 	    //log.sendStr(uart.getBuf());
-		delay_ms(1000);
-		print("finished\r\n");
+		delay_ms(10000);
+		nb.udpStrMsg("okko");
+		
 	}
 }	

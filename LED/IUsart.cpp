@@ -290,6 +290,52 @@ void IUsart::sendStrwithRep(string stri, const char* rep, u8 num)
 		}
 	}
 }
+
+
+void IUsart::sendStrwithRep(string stri, const char* rep, int time, u8 num)
+{
+	int test_num = 0;
+	int i = 0;
+	const char * str = stri.c_str();
+	while (1)
+	{   
+		test_num++;
+		receiveLen = 0;
+		memset(BUF, 0, 500);
+		sendStr(str);
+		delay_ms(time);
+#ifdef DEBUG
+		print("func:  ");
+		print(__func__);
+		print("\r\n");
+		print("Command:");
+		print(str);
+		print("\r\n");
+		print("Reply:");
+		print("(");
+		print(rep);
+		print(")");
+		print("\r\nreceive:");
+		print((const char *)BUF);	 
+		print("\r\n");
+#endif // DEBUG
+		if ((NULL != strstr((const char *)BUF, (const char *)rep)))
+		{
+			test_num = 0;
+			break;
+		}
+		else 
+		{
+			delay_ms(100);
+		}
+		if (test_num >= num) 
+		{
+			test_num = 0;
+			NVIC_SystemReset();
+		}
+	}
+}
+
 void print(const char* str)
 {
 	while ((*str) != 0)

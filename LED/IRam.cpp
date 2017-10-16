@@ -129,3 +129,25 @@ u8 IRam::getStatus()
 {
 	return IStatus;
 }
+
+
+void IRam::write(u32 WriteAddr, string & buf, u16 NumToWrite)
+{
+	u16 *pBuffer = (u16 *)buf.c_str();
+	u16 *clear = new u16[NumToWrite];
+	for (int i = 0; i < NumToWrite; i++)
+	{
+		clear[i] = 0;
+	}
+	write(WriteAddr, clear, NumToWrite);	
+	write(WriteAddr, pBuffer, NumToWrite);
+	delete [] clear;
+}
+
+
+void IRam::read(u32 ReadAddr, string & buf, u16 NumToRead)
+{
+	u16 *Buffer = new u16[NumToRead];
+	read(ReadAddr, Buffer, NumToRead);
+	buf = (char*)Buffer;
+}
